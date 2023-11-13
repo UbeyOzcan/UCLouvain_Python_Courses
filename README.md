@@ -13,6 +13,28 @@ During the course, here is the topic that will be cover :
 
 As it is an introduction to python and we want to build a reporting for the end of this project, we will mainly program using Jupyter Notebook
 
+## General Introduction to Python
+Python is a general purpose programming language widely used for Data Science, Finance, Web Development, etc .. The easy syntax and the easiness of data manipulation and modelling makes it the perfect languages for data science purposes.
+
+### IDE (integrated development environment)
+
+An IDE is a platform where the developer has access to some functionnalities to write code and makes it run.
+
+For Python, here are the most used one :
+ * VS Code
+ * Pycharm
+ * Jupyter Notebook
+
+Jupyter Notebook is very usefull to create quick and valuable reports. 
+
+VS Code and Pycharm are better if you a looking for project development platform for bigger project.
+
+### Anaconda Prompt
+
+Alongside python, some very important and usefull tools come. To run your python script (***Not a Jupyter notebook***) you will need to run it into Anaconda Prompt.
+
+Examples on how to use it will be given during the course.
+
 ## prerequisite
 
 Please install Anaconda : [Anaconda](https://www.anaconda.com/). Once the installation is done, let's try if Python is working.
