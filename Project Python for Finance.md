@@ -42,3 +42,8 @@ Student can create a github repository, put all the code and result wihtin githu
 OR
 
 Student can send me the project within a .zip folder by email to *ozcanubey@outlook.com*
+
+## Deadline
+
+19th January 2024 :)
+
