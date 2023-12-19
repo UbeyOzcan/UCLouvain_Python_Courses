@@ -9,12 +9,12 @@ from openpyxl.drawing.image import Image
 
 pd.options.plotting.backend = "plotly"
 
+# Put you inputs below :
+# ==============================================
 ticker_to_trade = '^FCHI'
 start_period = '2022-01-01'
 end_period = '2023-10-19'
-df = extract_stock_price(ticker=ticker_to_trade,
-                         start=start_period,
-                         end=end_period)
+
 
 window_bb = 20
 delta = 2
@@ -25,27 +25,43 @@ sl_1 = False
 sl_2 = True
 sl_perc = 0.95
 
+# First extract the data and store the data into df
+# ===========================================================
+df = extract_stock_price(ticker=ticker_to_trade,
+                         start=start_period,
+                         end=end_period)
+# Compute the bollinger bands
+# ==========================================================
 bb = bollinger(df_prices=df,
                window=window_bb,
                delta=delta)
 
+# Compute the RSI
+# ==========================================================
 rsi = rsi(df_prices=bb,
           window=window_rsi)
 
+# Compute the strategy 1
+# =========================================================
 result_strat_1 = strategy(df_prices=rsi,
                           rsi_lower=rsi_lower_bound,
                           rsi_upper=rsi_upper_bound,
                           stop_loss=sl_1)
 
+# Compute the strategy 2
+# =========================================================
 result_strat_2 = strategy(df_prices=rsi,
                           rsi_lower=rsi_lower_bound,
                           rsi_upper=rsi_upper_bound,
                           stop_loss=sl_2,
                           sl=sl_perc)
-
+# Create the graphs for both strategy
+# ===========================================================
 fig1_strat_1, fig2_strat_1, fig3_strat_1 = plot_startegy(result_strat_1, rsi_l=rsi_lower_bound, rsi_u=rsi_upper_bound)
 fig1_strat_2, fig2_strat_2, fig3_strat_2 = plot_startegy(result_strat_2, rsi_l=rsi_lower_bound, rsi_u=rsi_upper_bound)
 
+# Export all the graphs
+# =============================================================
 fig1_strat_1.write_image(file='plot_strat_1_bb.png', format='png')
 fig2_strat_1.write_image(file='plot_strat_1_rsi.png', format='png')
 fig3_strat_1.write_image(file='plot_strat_1_strat.png', format='png')
@@ -54,7 +70,8 @@ fig1_strat_2.write_image(file='plot_strat_2_bb.png', format='png')
 fig2_strat_2.write_image(file='plot_strat_2_rsi.png', format='png')
 fig3_strat_2.write_image(file='plot_strat_2_strat.png', format='png')
 
-
+# Export all the result into excel
+# =============================================================
 result_strat_1["df"].to_excel(f'Result of Strategy one {ticker_to_trade} for {[start_period, end_period]}.xlsx', sheet_name='Dataset')
 result_strat_2["df"].to_excel(f'Result of Strategy two {ticker_to_trade} for {[start_period, end_period]}.xlsx', sheet_name='Dataset')
 

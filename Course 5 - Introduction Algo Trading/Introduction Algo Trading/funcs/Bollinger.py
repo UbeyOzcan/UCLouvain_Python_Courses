@@ -1,4 +1,6 @@
-def bollinger(df_prices, window: int, delta: float):
+import pandas as pd
+
+def bollinger(df_prices:pd.DataFrame, window: int, delta: float):
 
     df_prices[f"ma_n"] = df_prices.Close.rolling(window).mean()
     df_prices['vol'] = df_prices.Close.rolling(window).std()
